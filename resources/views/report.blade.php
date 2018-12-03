@@ -78,20 +78,16 @@
 								  { id: x,
 								  	emp_id: emp}, 
 								  function(data) {
-								console.log(data);
 								if($.isEmptyObject(data))
 								{
 									$('table#emp_sal_details tr#str').remove();
 									$('table#emp_super_sal_details tr#sstr').remove();
-									//console.log('abc');
 									var td= '<tr><td colspan="9"><center>No Records found!</center></td></tr>';
 									var std= '<tr><td colspan="17"><center>No Records found!</center></td></tr>';
 									$('table#emp_sal_details').append(td);
 									$('table#emp_super_sal_details').append(std);
 								}
 								$.each(data, function(index, element) {
-									console.log(element.sal_id);
-									console.log(element.sup_sal_id);
 									var i = 0;
 									if(element.sal_id)
 									{
@@ -338,8 +334,7 @@
   			    @if(Session::has('alert-' . $msg))
 					<script>
 						$(document).ready( function() {
-							
-							//swal("Deleted!", 'Company has been deleted successfully.!', "success");
+
 							var colorName = "bg-black";
 							var text = "{{ Session::get('alert-' . $msg) }}";
 							var placementFrom = "bottom";

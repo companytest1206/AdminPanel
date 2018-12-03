@@ -84,7 +84,6 @@
   			    @if(Session::has('alert-' . $msg))
 					<script>
 						$(document).ready( function() {
-							//swal("Deleted!", 'Company has been deleted successfully.!', "success");
 							var colorName = "bg-black";
 							var text = "{{ Session::get('alert-' . $msg) }}";
 							var placementFrom = "bottom";
@@ -115,7 +114,6 @@
                 center: '',
                 right:  'today prev,next',
 				selectable: true,
-//				defaultDate: moment(),
 				displayEventTime: false,
 				events: [ 
 					<?php if($sat_offs != null){
@@ -172,7 +170,6 @@
 						var newdiv = $('<br><div id="fl'+ rowLen +'"><div class="form-line" style="width:200px; display: inline-block;" ><input type="text" class=" form-control" placeholder="Date of Festivals off" name="fest_off[]" value="'+ date +'" id="fest_off'+ rowLen +'" style="color: deepskyblue;"></div><a href="#" class="delete" id="remove" style="display: inline-block; margin-left: 10px;"><i class="fa fa-close"></i></a><br>');
 								
 						$("#fest").append(newdiv); 
-						//$('<a href="#" id="delete" style="float: right"><i class="fa fa-close"></i></a>').insertAfter("#fest");	
 					}
 					
 					var w = $('#work_days').val().substring(0,2);
@@ -206,7 +203,6 @@
 					window.quantity = quantity;
 					if(quantity > 0)
 					{
-						//alert('e');
 						$('#buttons').empty();
 						$('#buttons').append('<button type="submit" class="btn bg-light-green waves-effect" id="update"><i class="fa fa-edit" style="margin-bottom: 5px"></i> &nbsp;<strong>Update</strong></button>');
 						$('#myform').attr('action','{{ url("/updatecalendar") }}');
@@ -226,7 +222,6 @@
 							var sat = '<?php echo $sat_off; ?>';
 						}
 						<?php } ?>
-						//console.log(sat);
 						$('#sat_off').empty();
 						$('#sat_off').append($(document.createElement("option")).
 											 attr("value","").text("Saturdays of this month"));
@@ -266,8 +261,7 @@
 														 attr("value","").text("Saturdays of this month"));
 									for (var i=0;i<saturdays.length;i++){
 										var option = '';
-										var t = $('.fc-left').text();
-										//console.log(saturdays[i]);
+										var t = $('.fc-left').text();;
 										if(saturdays[i] != 0)
 										{
 											option += '<option value="'+ saturdays[i]+' '+t + '" style="color: deepskyblue;">' + saturdays[i]+' '+t + '</option>';
@@ -284,28 +278,22 @@
 						$('#fest').empty();
 						<?php foreach($new_fests as $fest){?>
 						var fests = '<?php echo $fest; ?>';
-						//console.log(fests);
 						if(fests != null)
 						{
 							var date = '<?php echo count(array_filter(str_split($fest),'is_numeric')); ?>';
-							//console.log(date);
 						
 							if(date == 6)
 							{
 								var fest = '<?php echo substr($fest, 3);?>';
-								//console.log(fest);
 									if(fest.trim() == t)
 									{
-										//console.log(fest.trim());
 										var counter = 1;
 										var newdiv = $('<br><div id="fl'+ rowLen +'"><div class="form-line" style="width:200px; display: inline-block;" ><input type="text" class=" form-control" placeholder="Date of Festivals off" name="fest_off[]" value="{{ $fest }}" id="fest_off'+ rowLen +'" style="color: deepskyblue;"></div><a class="delete" id="remove" style="display: inline-block; margin-left: 10px; cursor: pointer;"><i class="fa fa-close"></i></a><br>');							
 										$("#fest").append(newdiv);
 										
-										
-										//console.log(counter);
 										var w = $('#work_days').val().substring(0,2);
 										var fw = parseInt(w) - counter;
-										//console.log(fw);
+		
 										$('#work_days').val(fw + ' days.');
 										$('#mins_month').val($('#work_days').val().substring(0,2) * $('#mins_per_day').val().substring(0,3) + ' min.');
 										counter++;
@@ -315,23 +303,21 @@
 							if(date == 5)
 							{
 								var fest = '<?php echo substr($fest, 2);?>';
-								//console.log(fest);
+			
 									if(fest.trim() == t)
 									{
-										//console.log(fest.trim());
+						
 										var counter = 1;
 										var newdiv = $('<br><div id="fl'+ rowLen +'"><div class="form-line" style="width:200px; display: inline-block;" ><input type="text" class=" form-control" placeholder="Date of Festivals off" name="fest_off[]" value="{{ $fest }}" id="fest_off'+ rowLen +'" style="color: deepskyblue;"></div><a href="#" class="delete" id="remove" style="display: inline-block; margin-left: 10px;"><i class="fa fa-close"></i></a><br>');							
 										$("#fest").append(newdiv);
 										
-										
-										//console.log(counter);
+
 										var w = $('#work_days').val().substring(0,2);
 										var fw = parseInt(w) - counter;
-										//console.log(fw);
+				
 										$('#work_days').val(fw + ' days.');
 										$('#mins_month').val($('#work_days').val().substring(0,2) * $('#mins_per_day').val().substring(0,3) + ' min.');
 										counter++;
-										//console.log(fest_off);
 									}
 								rowLen++;
 							}
@@ -341,7 +327,6 @@
 						{
 							var w = $('#work_days').val().substring(0,2);
 							var fw = parseInt(w) - 1;
-							//console.log(fw);
 							$('#work_days').val(fw + ' days.');
 							$('#mins_month').val($('#work_days').val().substring(0,2) * $('#mins_per_day').val().substring(0,3) + ' min.');
 						}
@@ -351,7 +336,6 @@
 					}
 					if(quantity == 0)
 					{
-						//alert('s');
 						$('#buttons').empty();
 						$('#fest').empty();
 						$('#buttons').append('<button type="submit" class="btn bg-light-green waves-effect" id="save"><i class="fa fa-calendar-check-o" style="margin-bottom: 5px"></i> &nbsp;<strong>Save</strong></button>');
@@ -391,7 +375,6 @@
 	   				function satoff() {
 						var d = $('#total_days').val().substring(0,2);
 						var s = $('#total_sundays').val().substring(0,2);
-						//console.log($('#fest > *').length);
 						var len = $('#fest > *').length;
 						if(len > 0)
 						{
@@ -403,7 +386,6 @@
 					}
 	   				
 	   				$('#sat_off').on('change', function() {	
-						//console.log(previousValue);
 						if(window.previousValue != '')
 						{
 							if($(this).val() == '')
@@ -457,9 +439,7 @@
             });
 	
 	$("#fest").on('click', '.delete' , function () {
-				//var element = this.parentNode.id;
 				$(this).parent().remove();	
-				//console.log(element);
 				if ($("#fest").contents().last().is("br")) {
 					$("#fest").find('br').remove();
 				}
